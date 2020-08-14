@@ -1,21 +1,26 @@
 package com.itheima.jdbc.service.impl;
 
-import com.itheima.jdbc.dao.IAccountDao;
-import com.itheima.jdbc.factory.BeanFactory;
 import com.itheima.jdbc.service.IAccountService;
 
 import java.util.Date;
 
-public class AccountServiceImpl implements IAccountService {
+
+public class AccountServiceImpl2 implements IAccountService {
 
     //如果是经常变化的数据，并不适用于注入的方式
     private String name;
     private Integer age;
     private Date birthday;
 
-    public AccountServiceImpl(String name, Integer age, Date birthday){
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
