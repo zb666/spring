@@ -1,5 +1,6 @@
 package com.itheima.jdbc.service.impl;
 
+import com.itheima.jdbc.domain.Account;
 import com.itheima.jdbc.service.IAccountService;
 
 import java.util.*;
@@ -38,6 +39,26 @@ public class AccountServiceImpl3 implements IAccountService {
         System.out.println(mySet);
         System.out.println(myMap);
         System.out.println(myProps);
+    }
+
+    public List<Account> findAllAccount() {
+        return null;
+    }
+
+    public Account findAccountById(Integer accountId) {
+        return null;
+    }
+
+    public void saveAccount(Account account) {
+
+    }
+
+    public void updateAccount(Account account) {
+
+    }
+
+    public void deleteAccount(Integer accountId) {
+
     }
 
 

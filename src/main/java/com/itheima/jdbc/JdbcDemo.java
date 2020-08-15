@@ -36,7 +36,7 @@ public class JdbcDemo {
         while(rs.next()){
             System.out.println(rs.getString("username"));
         }
-        //6.释放资源
+        //6.释放资源 
         rs.close();
         pstm.close();
         conn.close();

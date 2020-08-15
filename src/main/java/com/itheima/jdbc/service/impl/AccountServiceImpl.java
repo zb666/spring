@@ -1,26 +1,43 @@
 package com.itheima.jdbc.service.impl;
 
 import com.itheima.jdbc.dao.IAccountDao;
-import com.itheima.jdbc.factory.BeanFactory;
+import com.itheima.jdbc.domain.Account;
 import com.itheima.jdbc.service.IAccountService;
 
-import java.util.Date;
+import java.util.List;
 
+//Service 这里可以做Aop的切面增强
 public class AccountServiceImpl implements IAccountService {
 
-    //如果是经常变化的数据，并不适用于注入的方式
-    private String name;
-    private Integer age;
-    private Date birthday;
+    private IAccountDao accountDao;
 
-    public AccountServiceImpl(String name, Integer age, Date birthday){
-        this.name = name;
-        this.age = age;
-        this.birthday = birthday;
+    public void setAccountDao(IAccountDao accountDao) {
+        this.accountDao = accountDao;
     }
 
     public void  saveAccount(){
-        System.out.println("service中的saveAccount方法执行了。。。"+name+","+age+","+birthday);
+        accountDao.saveAccount();
+        System.out.println("service中的saveAccount方法执行了。。。");
+    }
+
+    public List<Account> findAllAccount() {
+        return accountDao.findAllCount();
+    }
+
+    public Account findAccountById(Integer accountId) {
+        return accountDao.findAccountById(accountId);
+    }
+
+    public void saveAccount(Account account) {
+        accountDao.saveAccount(account);
+    }
+
+    public void updateAccount(Account account) {
+        accountDao.updateAccount(account);
+    }
+
+    public void deleteAccount(Integer accountId) {
+        accountDao.deleteAccount(accountId);
     }
 
 

@@ -1,8 +1,10 @@
 package com.itheima.jdbc.service.impl;
 
+import com.itheima.jdbc.domain.Account;
 import com.itheima.jdbc.service.IAccountService;
 
 import java.util.Date;
+import java.util.List;
 
 
 public class AccountServiceImpl2 implements IAccountService {
@@ -26,6 +28,26 @@ public class AccountServiceImpl2 implements IAccountService {
 
     public void  saveAccount(){
         System.out.println("service中的saveAccount方法执行了。。。"+name+","+age+","+birthday);
+    }
+
+    public List<Account> findAllAccount() {
+        return null;
+    }
+
+    public Account findAccountById(Integer accountId) {
+        return null;
+    }
+
+    public void saveAccount(Account account) {
+
+    }
+
+    public void updateAccount(Account account) {
+
+    }
+
+    public void deleteAccount(Integer accountId) {
+
     }
 
 
