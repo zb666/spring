@@ -2,6 +2,7 @@ package com.itheima.jdbc.ui;
 
 import com.itheima.jdbc.factory.BeanFactory;
 import com.itheima.jdbc.service.IAccountService;
+import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -16,4 +17,11 @@ public class Client {
         IAccountService service = context.getBean("accountService3",IAccountService.class);
         service.saveAccount();
     }
+
+    @Test
+    public void testClient(){
+
+    }
+
+
 }
