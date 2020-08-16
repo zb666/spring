@@ -1,6 +1,4 @@
-package com.itheima.jdbc.test;
-
-import com.itheima.jdbc.service.IAccountService;
+import com.itheima.service.IAccountService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +10,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class AccountServiceTest {
 
     @Autowired
-    private IAccountService as;
+    private IAccountService accountService;
 
     @Test
     public void testTransfer(){
-        as.transfer("zhangsan","zhangsanA",50f);
+        accountService.transfer("zhangsan","zhangsanA",50f);
     }
 
 }
