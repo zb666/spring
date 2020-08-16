@@ -50,6 +50,10 @@ public class AccountServiceImpl2 implements IAccountService {
 
     }
 
+    public void transfer(String sourceName, String targetName, Float money) {
+
+    }
+
 
 }
 
