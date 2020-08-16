@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans  xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:aop="http://www.springframework.org/schema/aop"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/aop
-        http://www.springframework.org/schema/aop/spring-aop.xsd">
+        http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.itheima"></context:component-scan>
+
+    <!--配置Spring开启Aop注解的支持-->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
 <!-- <bean id="accountService" class="com.itheima.jdbc.service.impl.AccountServiceImpl">-->
 <!--        <constructor-arg name="name" value="泰斯特"></constructor-arg>-->
@@ -18,7 +24,7 @@
         <property name="accountDao" ref="accountDao"></property>
     </bean>
 
-    <bean id="now" class="java.util.Date"></bean>
+    <bean id="now" class="java.util.Date"/>
 
     <bean id="accountService2" class="com.itheima.jdbc.service.impl.AccountServiceImpl2">
         <property name="name" value="TEST" ></property>
@@ -80,7 +86,7 @@
     <!-- 配置Service -->
     <bean id="accountService" class="com.itheima.jdbc.service.impl.AccountServiceImpl">
        <!-- 注入dao 参考的依据是,ref(也就是注入的来源)-->
-       <property name="accountDao" ref="accountDao"></property>
+       <property name="accountDao" ref="accountDao"/>
     </bean>
 
     <!--配置Dao对象-->
@@ -103,12 +109,25 @@
     </bean>
 
     <bean id="logger" class="com.itheima.jdbc.utils.Logger"/>
-
+    
     <aop:config>
+        
+        <aop:pointcut id="pt1" expression="execution(* com.itheima.jdbc.service.impl.*.*(..))"/>
+        
         <aop:aspect id="logAdvice" ref="logger">
             <!--execution([修饰符] 返回值类型 包名.类名.方法名(参数))-->
             <!--.. 表示的是当前的包及其子包 (..)代表的是所有的子包-->
-            <aop:before method="printLog" pointcut="execution(* com.itheima.jdbc.service.impl.*.*(..))"/>
+<!--            <aop:before method="printLog" pointcut-ref="pt1"/>-->
+            <!--配置前置通知-->
+<!--            <aop:before method="beforePrintLog" pointcut-ref="pt1"></aop:before>-->
+<!--            &lt;!&ndash;配置后置通知&ndash;&gt;-->
+<!--            <aop:after-returning method="afterReturningPrintLog" pointcut-ref="pt1"></aop:after-returning>-->
+<!--            &lt;!&ndash;配置异常通知&ndash;&gt;-->
+<!--            <aop:after-throwing method="afterThrowingPrintLog" pointcut-ref="pt1"></aop:after-throwing>-->
+<!--            &lt;!&ndash;配置最终通知&ndash;&gt;-->
+<!--            <aop:after method="afterPrintLog" pointcut-ref="pt1"></aop:after>-->
+            
+            <aop:around method="aroundPrintLog" pointcut-ref="pt1"></aop:around>
         </aop:aspect>
     </aop:config>
 

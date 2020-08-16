@@ -10,5 +10,6 @@ public class AopTest {
         ApplicationContext context = new ClassPathXmlApplicationContext("bean.xml");
         IAccountService accountService = context.getBean("accountService",IAccountService.class);
         accountService.findAllAccount();
+
     }
 }
