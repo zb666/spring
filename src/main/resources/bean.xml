@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans  xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 <!-- <bean id="accountService" class="com.itheima.jdbc.service.impl.AccountServiceImpl">-->
 <!--        <constructor-arg name="name" value="泰斯特"></constructor-arg>-->
@@ -75,7 +79,7 @@
 
     <!-- 配置Service -->
     <bean id="accountService" class="com.itheima.jdbc.service.impl.AccountServiceImpl">
-       <!-- 注入dao -->
+       <!-- 注入dao 参考的依据是,ref(也就是注入的来源)-->
        <property name="accountDao" ref="accountDao"></property>
     </bean>
 
@@ -97,5 +101,15 @@
         <property name="user" value="root"></property>
         <property name="password" value="root"></property>
     </bean>
+
+    <bean id="logger" class="com.itheima.jdbc.utils.Logger"/>
+
+    <aop:config>
+        <aop:aspect id="logAdvice" ref="logger">
+            <!--execution([修饰符] 返回值类型 包名.类名.方法名(参数))-->
+            <!--.. 表示的是当前的包及其子包 (..)代表的是所有的子包-->
+            <aop:before method="printLog" pointcut="execution(* com.itheima.jdbc.service.impl.*.*(..))"/>
+        </aop:aspect>
+    </aop:config>
 
 </beans>
