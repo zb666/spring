@@ -23,4 +23,9 @@ public class AccountServiceImpl implements IAccountService {
     public void saveAccount(Account account) {
         accountDao.saveAccount(account);
     }
+
+    @Override
+    public List<Account> findByName(String name) {
+        return accountDao.findAccountsByName(name);
+    }
 }

@@ -11,4 +11,6 @@ public interface IAccountService {
 
     // 保存帐户信息
      void saveAccount(Account account);
+
+    List<Account> findByName(String name);
 }

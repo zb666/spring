@@ -31,6 +31,14 @@ public class AccountController {
         return "list";
     }
 
+    @RequestMapping("/findAccount")
+    public void findAccount(String userName){
+        List<Account> accountList = accountService.findByName(userName);
+        for (Account account : accountList) {
+            System.out.println("账号信息"+account.toString());
+        }
+    }
+
     /**
      * 保存
      * @return
